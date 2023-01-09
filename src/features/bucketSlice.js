@@ -4,11 +4,11 @@ const initialState = {
     buckets: [
         {
             id: nanoid(),
-            name: "Education",
+            name: "Environment",
             cards: [
                 {
-                    title: "card1",
-                    link: "link"
+                    title: "card2",
+                    link: "linkkejb"
                 }
             ]
         },
@@ -19,6 +19,16 @@ const initialState = {
                 {
                     title: "card2",
                     link: "linkkejb"
+                }
+            ]
+        },
+        {
+            id: nanoid(),
+            name: "Education",
+            cards: [
+                {
+                    title: "card1",
+                    link: "link"
                 }
             ]
         },

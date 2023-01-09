@@ -4,7 +4,7 @@ import Card from './Card'
 const Cards = ({cards}) => {
 
   return (
-    <div className=''>
+    <div style={{ marginTop: '0.5rem' }}>
         {
            cards.map((card)=>{
                 return (

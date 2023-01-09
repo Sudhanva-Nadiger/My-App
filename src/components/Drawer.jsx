@@ -15,7 +15,7 @@ import Cards from './Cards'
 const drawerWidth = 240;
 
 function ResponsiveDrawer() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(true);
   const [cards, setCards] = React.useState([]);
   const [active, setActive] = React.useState("");
   const buckets = useSelector(allBuckets)
@@ -50,7 +50,7 @@ function ResponsiveDrawer() {
   );
 
   return (
-    <div className="flex">
+    <div style={{ display: 'flex' }}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
 
@@ -78,7 +78,7 @@ function ResponsiveDrawer() {
             variant="permanent"
             sx={{
               display: { xs: 'none', sm: 'block' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+              '& .MuiDrawer-paper': {  width: drawerWidth, position: 'relative', height: '100vh', pb: '6rem', overflowY:'auto' },
             }}
             open
           >
@@ -86,10 +86,7 @@ function ResponsiveDrawer() {
           </Drawer>
         </Box>
       </Box>
-      <div style={{
-        position: "relative",
-        left:`${drawerWidth}px`
-      }} >
+      <div>
         {
           <Cards cards={cards} />
         }
