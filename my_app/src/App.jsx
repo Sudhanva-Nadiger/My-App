@@ -1,11 +1,16 @@
 import React from 'react'
+import NavBar from './components/NavBar'
+import BucketView from './components/BucketView'
+import Footer from './components/Footer'
 
 function App() {
 
   return (
-    <div className="">
-      up and running
-    </div>
+    <>
+      <NavBar />
+      <BucketView />
+      <Footer/>
+    </>
   )
 }
 
