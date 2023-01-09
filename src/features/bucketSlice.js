@@ -1,7 +1,29 @@
 import { createSlice, nanoid, } from '@reduxjs/toolkit'
 
 const initialState = {
-    buckets: [],
+    buckets: [
+        {
+            id: nanoid(),
+            name: "Education",
+            cards: [
+                {
+                    title: "card1",
+                    link: "link"
+                }
+            ]
+        },
+        {
+            id: nanoid(),
+            name: "Environment",
+            cards: [
+                {
+                    title: "card2",
+                    link: "linkkejb"
+                }
+            ]
+        },
+
+    ],
 }
 
 export const bucketSlice = createSlice({
