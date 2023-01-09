@@ -1,0 +1,68 @@
+[
+  {
+    "id": "XtSJoUMuaakLdet32SVcd",
+    "name": "Bucket-1",
+    "cards": [
+      {
+        "name": "Card-1",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-2",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-3",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-4",
+        "link": "video.mp4"
+      }
+    ]
+  },
+  {
+    "id": "-r_bKHGXe91TAw5_OiGq4",
+    "name": "Bucket-2",
+    "cards": [
+      {
+        "name": "Card-1",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-2",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-3",
+        "link": "video.mp4"
+      }
+    ]
+  },
+  {
+    "id": "tIvz07uer_35N6ojhqt06",
+    "name": "Bucket-3",
+    "cards": [
+      {
+        "name": "Card-1",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-2",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-3",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-4",
+        "link": "video.mp4"
+      },
+      {
+        "name": "Card-5",
+        "link": "video.mp4"
+      }
+    ]
+  }
+]
