@@ -5,16 +5,25 @@ import {IconButton, ListItem, TextField} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {Delete, Done} from "@mui/icons-material";
 import Edit from "@mui/icons-material/Edit";
+import { useDispatch } from 'react-redux'
+import { editBucketName, deleteBucket } from '../features/bucketSlice'
 
-export default function ListItemComp({bucket, bgColor, setActive, setCards, active }) {
-    const inputRef = useRef();
+export default function ListItemComp({index, bucket, bgColor, setActive, setCards, active }) {
+    const dispatch = useDispatch()
     const [edit, setEdit] = useState(false);
+    const [value, setValue] = useState(bucket.name)
     bgColor = !edit ? bgColor : ""
+
     const toggleEdit = () => setEdit(!edit)
+
     const onDone = () => {
         toggleEdit()
-        const div = inputRef.current;
-        const value = div.querySelector('input').value
+        const editedName = value
+
+        dispatch(editBucketName({editedName, id: bucket.id}))
+    }
+    const handleChange = e => {
+        setValue(e.target.value);
     }
     return (
         <ListItem disablePadding
@@ -29,21 +38,25 @@ export default function ListItemComp({bucket, bgColor, setActive, setCards, acti
             } } >
                 <ListItemText>
                     {
-                        edit ? <><TextField ref={inputRef} /></> : <Typography>{bucket.name}</Typography>
+                        edit ? <><TextField onChange={handleChange} value={value} /></> : <Typography>{bucket.name}</Typography>
                     }
                 </ListItemText>
                 {
-                    edit && <Done onClick={onDone}/>
+                    edit && <IconButton onClick={onDone}><Done/></IconButton>
                 }
                 {
                     (active === bucket.id) &&
                     <>
-                        <IconButton>
+                        <IconButton onClick={toggleEdit}>
                             {
-                                !edit && <Edit onClick={toggleEdit}/>
+                                !edit && <Edit/>
                             }
                         </IconButton>
-                        <IconButton>
+                        <IconButton onClick={(e)=>{
+                            e.stopPropagation()
+                            setCards([])
+                            dispatch(deleteBucket({index}));
+                        }}>
                         <Delete />
                         </IconButton>
                     </>

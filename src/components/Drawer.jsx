@@ -38,10 +38,10 @@ function ResponsiveDrawer() {
       </Toolbar>
       <Divider />
       <List>
-        {buckets.map((bucket) => {
+        {buckets.map((bucket, index) => {
           const bgColor = active === bucket.id ? "#2196f3":"";
           return (
-              <ListItem bucket={bucket} bgColor={bgColor} setActive={setActive} setCards={setCards} active={active} />
+              <ListItem key={bucket.id} index={index} bucket={bucket} bgColor={bgColor} setActive={setActive} setCards={setCards} active={active} />
           )
         })}
       </List>
@@ -85,8 +85,7 @@ function ResponsiveDrawer() {
           </Drawer>
         </Box>
       </Box>
-        <Cards cards={cards} />
-
+      <Cards cards={cards} />
     </div>
   );
 }
