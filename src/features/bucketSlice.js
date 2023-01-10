@@ -7,6 +7,7 @@ const initialState = {
             name: "Environment",
             cards: [
                 {
+                    id: nanoid(),
                     title: "card2",
                     link: "linkkejb2"
                 }
@@ -17,6 +18,7 @@ const initialState = {
             name: "Environment",
             cards: [
                 {
+                    id: nanoid(),
                     title: "card2",
                     link: "linkkejb"
                 }
@@ -27,26 +29,32 @@ const initialState = {
             name: "Education",
             cards: [
                 {
+                    id: nanoid(),
                     title: "card1",
                     link: "link1"
                 },
                 {
+                    id: nanoid(),
                     title: "card1",
                     link: "link2"
                 },
                 {
+                    id: nanoid(),
                     title: "card1",
                     link: "link3"
                 },
                 {
+                    id: nanoid(),
                     title: "card1",
                     link: "link4"
                 },
                 {
+                    id: nanoid(),
                     title: "card1",
                     link: "link5"
                 },
                 {
+                    id: nanoid(),
                     title: "card1",
                     link: "link6"
                 },

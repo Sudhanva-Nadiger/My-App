@@ -11,7 +11,7 @@ const Cards = ({cards}) => {
         {
            cards.map((card)=>{
                 return (
-                    <Card key={card.link} title={card.title} link={card.link} />
+                    <Card key={card.id} title={card.title} link={card.link} />
                 )
            })
         }

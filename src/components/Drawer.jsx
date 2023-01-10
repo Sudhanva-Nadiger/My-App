@@ -1,12 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { allBuckets } from '../features/bucketSlice';
@@ -14,7 +10,7 @@ import { selectToggler, toggleDrawer } from '../features/toggleSlice.js'
 import Cards from './Cards'
 import {IconButton, Toolbar} from "@mui/material";
 import { Close, Add }  from '@mui/icons-material'
-import Typography from "@mui/material/Typography";
+import ListItem from './ListItem.jsx'
 
 const drawerWidth = 240;
 
@@ -45,19 +41,7 @@ function ResponsiveDrawer() {
         {buckets.map((bucket) => {
           const bgColor = active === bucket.id ? "#2196f3":"";
           return (
-            <ListItem disablePadding
-            style={{
-              backgroundColor: `${bgColor}`
-            }}
-            key={bucket.id} 
-            >
-              <ListItemButton onClick={() => {
-                setCards(bucket.cards);
-                setActive(bucket.id)
-              } } >
-                <ListItemText primary={bucket.name} />
-              </ListItemButton>
-            </ListItem>
+              <ListItem bucket={bucket} bgColor={bgColor} setActive={setActive} setCards={setCards} active={active} />
           )
         })}
       </List>
