@@ -8,7 +8,7 @@ const initialState = {
             cards: [
                 {
                     title: "card2",
-                    link: "linkkejb"
+                    link: "linkkejb2"
                 }
             ]
         },
@@ -28,8 +28,28 @@ const initialState = {
             cards: [
                 {
                     title: "card1",
-                    link: "link"
-                }
+                    link: "link1"
+                },
+                {
+                    title: "card1",
+                    link: "link2"
+                },
+                {
+                    title: "card1",
+                    link: "link3"
+                },
+                {
+                    title: "card1",
+                    link: "link4"
+                },
+                {
+                    title: "card1",
+                    link: "link5"
+                },
+                {
+                    title: "card1",
+                    link: "link6"
+                },
             ]
         },
 

@@ -10,7 +10,7 @@ import { width } from '@mui/system';
 
 export default function CardComp({title, link}) {
   return (
-    <Card style={{marginLeft:"10px"}} sx={{ maxWidth: 250 }}>
+    <Card style={{marginLeft:"10px", marginTop: '1rem'}} sx={{ maxWidth: 250, height: 'min-content' }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}

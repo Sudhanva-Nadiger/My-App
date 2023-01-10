@@ -101,11 +101,8 @@ function ResponsiveDrawer() {
           </Drawer>
         </Box>
       </Box>
-      <div>
-        {
-          <Cards cards={cards} />
-        }
-      </div>
+        <Cards cards={cards} />
+
     </div>
   );
 }
