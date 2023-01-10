@@ -11,19 +11,56 @@ import Cards from './Cards'
 import {IconButton, Toolbar} from "@mui/material";
 import { Close, Add }  from '@mui/icons-material'
 import ListItem from './ListItem.jsx'
+import {useCallback} from "react";
 
-const drawerWidth = 240;
+const drawerDefaultWidth = 240;
+const drawerMinWidth = 80;
+const drawerMaxWidth = 600;
+
+const draggerStyles = {
+    width: "8px",
+    cursor: "ew-resize",
+    padding: "4px 0 0",
+    borderTop: "1px solid #ddd",
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 11100,
+    backgroundColor: "#e4e7e9"
+}
 
 const handleClose = (dispatch, open) => dispatch(toggleDrawer(!open))
 
 function ResponsiveDrawer() {
   const [cards, setCards] = React.useState([]);
   const [active, setActive] = React.useState("");
+  const [drawerWidth, setWidth] = React.useState(drawerDefaultWidth)
   const buckets = useSelector(allBuckets)
   const mobileOpen = useSelector(selectToggler)
   const dispatch = useDispatch()
 
-  const drawer = (
+/* make the drawer resizable */
+    const handleMouseDown = e => {
+        document.addEventListener("mouseup", handleMouseUp, true);
+        document.addEventListener("mousemove", handleMouseMove, true);
+    };
+
+    const handleMouseUp = () => {
+        document.removeEventListener("mouseup", handleMouseUp, true);
+        document.removeEventListener("mousemove", handleMouseMove, true);
+    };
+
+    const handleMouseMove = useCallback(e => {
+        const newWidth = e.clientX - document.body.offsetLeft;
+        if (newWidth > drawerMinWidth && newWidth < drawerMaxWidth) {
+            setWidth(newWidth);
+        }
+    }, []);
+
+
+
+    const drawer = (
     <div>
       <Toolbar sx={{ justifyContent: 'space-evenly' }}>
         <IconButton>
@@ -55,7 +92,7 @@ function ResponsiveDrawer() {
 
         <Box
           component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }, position: 'relative' }}
           aria-label="mailbox folders"
         >
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -82,6 +119,7 @@ function ResponsiveDrawer() {
             open
           >
             {drawer}
+              <div style={draggerStyles} onMouseDown={e => handleMouseDown(e)} className="dragger" />
           </Drawer>
         </Box>
       </Box>
