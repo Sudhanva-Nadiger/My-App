@@ -2,10 +2,16 @@ import React from 'react'
 import Logo from '../assets/vite.svg'
 import {AppBar, Box, IconButton, Link, Toolbar} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import { selectToggler, toggleDrawer } from '../features/toggleSlice.js';
+import { useSelector, useDispatch } from "react-redux";
 
-const noop = () => {}
+const handleClick = (isShown, dispatch) => {
+  dispatch(toggleDrawer(!isShown))
+}
 
 const NavBar = () => {
+  const isShown = useSelector(selectToggler)
+  const dispatch = useDispatch();
   return (
     <AppBar sx={{ position: 'relative' }}>
       <Toolbar>
@@ -13,7 +19,7 @@ const NavBar = () => {
             color="inherit"
             aria-label="open drawer"
             edge="start"
-            onClick={noop}
+            onClick={() => handleClick(isShown, dispatch)}
             sx={{ display: { sm: 'none' } }}
         >
           <MenuIcon />

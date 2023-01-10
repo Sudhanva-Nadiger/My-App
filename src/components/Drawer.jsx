@@ -8,22 +8,19 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { allBuckets } from '../features/bucketSlice';
+import { selectToggler, toggleDrawer } from '../features/toggleSlice.js'
 import Cards from './Cards'
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer() {
-  const [mobileOpen, setMobileOpen] = React.useState(true);
   const [cards, setCards] = React.useState([]);
   const [active, setActive] = React.useState("");
   const buckets = useSelector(allBuckets)
-
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const mobileOpen = useSelector(selectToggler)
+  const dispatch = useDispatch()
 
   const drawer = (
     <div>
@@ -63,7 +60,9 @@ function ResponsiveDrawer() {
           <Drawer
             variant="temporary"
             open={mobileOpen}
-            onClose={handleDrawerToggle}
+            onClose={() => {
+              dispatch(toggleDrawer(!mobileOpen))
+            }}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
