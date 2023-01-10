@@ -15,7 +15,7 @@ import Cards from './Cards'
 const drawerWidth = 240;
 
 function ResponsiveDrawer() {
-  const [mobileOpen, setMobileOpen] = React.useState(true);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [cards, setCards] = React.useState([]);
   const [active, setActive] = React.useState("");
   const buckets = useSelector(allBuckets)
@@ -32,10 +32,12 @@ function ResponsiveDrawer() {
         {buckets.map((bucket) => {
           const bgColor = active === bucket.id ? "#2196f3":"";
           return (
-            <ListItem style={{
+            <ListItem disablePadding
+            style={{
               backgroundColor: `${bgColor}`
             }}
-            key={bucket.id} disablePadding>
+            key={bucket.id} 
+            >
               <ListItemButton onClick={() => {
                 setCards(bucket.cards);
                 setActive(bucket.id)
@@ -52,7 +54,7 @@ function ResponsiveDrawer() {
   return (
     <div style={{ display: 'flex' }}>
       <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
+        {/* <CssBaseline /> */}
 
         <Box
           component="nav"
