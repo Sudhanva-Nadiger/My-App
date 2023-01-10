@@ -12,8 +12,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { allBuckets } from '../features/bucketSlice';
 import { selectToggler, toggleDrawer } from '../features/toggleSlice.js'
 import Cards from './Cards'
+import {IconButton, Toolbar} from "@mui/material";
+import { Close, Add }  from '@mui/icons-material'
+import Typography from "@mui/material/Typography";
 
 const drawerWidth = 240;
+
+const handleClose = (dispatch, open) => dispatch(toggleDrawer(!open))
 
 function ResponsiveDrawer() {
   const [cards, setCards] = React.useState([]);
@@ -24,6 +29,17 @@ function ResponsiveDrawer() {
 
   const drawer = (
     <div>
+      <Toolbar sx={{ justifyContent: 'space-evenly' }}>
+        <IconButton>
+          <Add />
+        </IconButton>
+        <IconButton
+            onClick={() => handleClose(dispatch, mobileOpen)}
+            sx={{ display: { sm: 'none' }}}
+        >
+          <Close />
+        </IconButton>
+      </Toolbar>
       <Divider />
       <List>
         {buckets.map((bucket) => {
@@ -60,14 +76,12 @@ function ResponsiveDrawer() {
           <Drawer
             variant="temporary"
             open={mobileOpen}
-            onClose={() => {
-              dispatch(toggleDrawer(!mobileOpen))
-            }}
+            onClose={() => handleClose(dispatch, mobileOpen) }
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
             sx={{
-              display: { xs: 'block', sm: 'none' },
+              display: { sm: 'none' },
               '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
             }}
           >
