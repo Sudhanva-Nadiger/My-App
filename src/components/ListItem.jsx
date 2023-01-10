@@ -8,9 +8,9 @@ import Edit from "@mui/icons-material/Edit";
 import { useDispatch } from 'react-redux'
 import { editBucketName, deleteBucket } from '../features/bucketSlice'
 
-export default function ListItemComp({index, bucket, bgColor, setActive, setCards, active }) {
+export default function ListItemComp({initialEditValue, index, bucket, bgColor, setActive, setCards, active }) {
     const dispatch = useDispatch()
-    const [edit, setEdit] = useState(false);
+    const [edit, setEdit] = useState(initialEditValue);
     const [value, setValue] = useState(bucket.name)
     bgColor = !edit ? bgColor : ""
 
@@ -38,7 +38,7 @@ export default function ListItemComp({index, bucket, bgColor, setActive, setCard
             } } >
                 <ListItemText>
                     {
-                        edit ? <><TextField onChange={handleChange} value={value} /></> : <Typography>{bucket.name}</Typography>
+                        edit ? <><TextField onChange={handleChange} value={value} /></> : <Typography sx={{ overflow: 'hidden', textOverflow: "ellipsis"}}>{bucket.name}</Typography>
                     }
                 </ListItemText>
                 {

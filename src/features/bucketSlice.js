@@ -82,11 +82,34 @@ export const bucketSlice = createSlice({
                 const { index } = action.payload
                 state.buckets.splice(index, 1);
             }
+        },
+        addBucket: {
+            reducer(state, action){
+                state.buckets.unshift({
+                    name : "new bucket",
+                    id: nanoid(),
+                    cards : []
+                })
+            }
+        },
+        addCard: {
+            reducer(state, action){
+                const {bucketId, title, link} = action.payload;
+
+                const newCard = {
+                    id: nanoid(),
+                    title,
+                    link,
+                }
+
+                const foundBucket = state.buckets.find(bucket => bucket.id === bucketId)
+                foundBucket.cards.unshift(newCard)
+            }
         }
     }
 })
 
 export const allBuckets = (state) => state.buckets.buckets
-export const { editBucketName, deleteBucket } = bucketSlice.actions
+export const { editBucketName, deleteBucket, addBucket } = bucketSlice.actions
 
 export default bucketSlice.reducer

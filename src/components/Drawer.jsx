@@ -5,7 +5,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { allBuckets } from '../features/bucketSlice';
+import { allBuckets, addBucket } from '../features/bucketSlice';
 import { selectToggler, toggleDrawer } from '../features/toggleSlice.js'
 import Cards from './Cards'
 import {IconButton, Toolbar} from "@mui/material";
@@ -14,18 +14,18 @@ import ListItem from './ListItem.jsx'
 import {useCallback} from "react";
 
 const drawerDefaultWidth = 240;
-const drawerMinWidth = 80;
+const drawerMinWidth = 180;
 const drawerMaxWidth = 600;
 
 const draggerStyles = {
     width: "8px",
+    minHeight: "100%",
     cursor: "ew-resize",
     padding: "4px 0 0",
     borderTop: "1px solid #ddd",
     position: "absolute",
     top: 0,
     right: 0,
-    bottom: 0,
     zIndex: 11100,
     backgroundColor: "#e4e7e9"
 }
@@ -63,7 +63,9 @@ function ResponsiveDrawer() {
     const drawer = (
     <div>
       <Toolbar sx={{ justifyContent: 'space-evenly' }}>
-        <IconButton>
+        <IconButton onClick={()=>{
+          dispatch(addBucket())
+        }}>
           <Add />
         </IconButton>
         <IconButton
@@ -78,7 +80,7 @@ function ResponsiveDrawer() {
         {buckets.map((bucket, index) => {
           const bgColor = active === bucket.id ? "#2196f3":"";
           return (
-              <ListItem key={bucket.id} index={index} bucket={bucket} bgColor={bgColor} setActive={setActive} setCards={setCards} active={active} />
+              <ListItem initialEditValue={false} key={bucket.id} index={index} bucket={bucket} bgColor={bgColor} setActive={setActive} setCards={setCards} active={active} />
           )
         })}
       </List>
@@ -119,8 +121,8 @@ function ResponsiveDrawer() {
             open
           >
             {drawer}
-              <div style={draggerStyles} onMouseDown={e => handleMouseDown(e)} className="dragger" />
           </Drawer>
+          <div style={draggerStyles} onMouseDown={e => handleMouseDown(e)} className="dragger" />
         </Box>
       </Box>
       <Cards cards={cards} />
