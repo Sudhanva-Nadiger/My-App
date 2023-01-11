@@ -35,27 +35,27 @@ const initialState = {
                 },
                 {
                     id: nanoid(),
-                    title: "card1",
+                    title: "card10",
                     link: "link2"
                 },
                 {
                     id: nanoid(),
-                    title: "card1",
+                    title: "card100",
                     link: "link3"
                 },
                 {
                     id: nanoid(),
-                    title: "card1",
+                    title: "carduiehdwie1",
                     link: "link4"
                 },
                 {
                     id: nanoid(),
-                    title: "card1",
+                    title: "card1qduiuwiqegdiewgd",
                     link: "link5"
                 },
                 {
                     id: nanoid(),
-                    title: "card1",
+                    title: "card19",
                     link: "link6"
                 },
             ]

@@ -1,8 +1,27 @@
 import { Delete, Replay } from '@mui/icons-material'
 import { Button, Card, CardActions, CardContent, Typography } from '@mui/material'
 import React from 'react'
+import { addToHitory, deleteFromHistory } from '../features/historySlice'
+import { useDispatch } from 'react-redux'
+import VideoPlayer from './VideoPlayer'
+import Modal from './Modal'
 
-const HistoryCard = ({ title, link, time }) => {
+const HistoryCard = ({id, title, link, time, setModal, index }) => {
+  const dispatch = useDispatch()
+  const handleClick = () => {
+    setModal(<Modal onClose={() => { setModal("") }} open={true} content={<VideoPlayer link={link} />} action={() => {}} />)
+    const historyObject = {
+      title,
+      link,
+    }
+    handleDelete(index);
+    dispatch(addToHitory(historyObject))
+  }
+
+  const handleDelete = () => {
+    dispatch(deleteFromHistory(index))
+  }
+
   return (
     <Card>
         <CardContent>
@@ -18,8 +37,8 @@ const HistoryCard = ({ title, link, time }) => {
         </CardContent>
 
         <CardActions>
-            <Button size="small" title="Watch again"><Replay /></Button>
-            <Button size="small" title="Delete"><Delete /></Button>
+            <Button size="small" title="Watch again" onClick={handleClick}><Replay /></Button>
+            <Button size="small" title="Delete" onClick={()=>handleDelete(index)}><Delete /></Button>
         </CardActions>
     </Card>
   )

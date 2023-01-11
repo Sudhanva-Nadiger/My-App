@@ -6,24 +6,27 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteCard } from '../features/bucketSlice'
 import {ItemTypes} from '../features/dragTypes'
 import { useDrag } from 'react-dnd';
 import VideoPlayer from './VideoPlayer';
 import Modal from './Modal';
-import { addToHitory } from '../features/historySlice'
+import { addToHitory, selectAllHistory } from '../features/historySlice'
+
 export default function CardComp({title, link, cardIndex, bucketIndex, setDeleteCardClicked, setModal }) {
   const disPatch = useDispatch()
   const id = cardIndex;
-
+  const historyArr = useSelector( selectAllHistory);
   /* modal logic */
   const handleClick = () => {
     setModal(<Modal onClose={() => { setModal("")}} open={true} content={<VideoPlayer link={link} />} action={() => {}} />)
     const historyObject = {
+
       title, 
       link,
     }
+    
     disPatch( addToHitory(historyObject))
   }
 
