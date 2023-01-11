@@ -6,11 +6,12 @@ import Typography from "@mui/material/Typography";
 import { Delete, Done } from "@mui/icons-material";
 import Edit from "@mui/icons-material/Edit";
 import { useDispatch } from 'react-redux'
-import { editBucketName, deleteBucket } from '../features/bucketSlice'
+import { editBucketName, deleteBucket, toggleInitialEditValue } from '../features/bucketSlice'
 
 export default function ListItemComp({ initialEditValue, index, bucket, bgColor, setActive, setCards, active }) {
     const dispatch = useDispatch()
     const [edit, setEdit] = useState(initialEditValue ? initialEditValue : false);
+    dispatch(toggleInitialEditValue({index}))
     const [value, setValue] = useState(bucket.name)
     bgColor = !edit ? bgColor : ""
 

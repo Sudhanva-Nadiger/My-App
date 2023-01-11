@@ -1,4 +1,4 @@
-import { createSlice, nanoid, prepareAutoBatched, } from '@reduxjs/toolkit'
+import { createSlice, nanoid, } from '@reduxjs/toolkit'
 
 const initialState = {
     buckets: [
@@ -113,11 +113,20 @@ export const bucketSlice = createSlice({
                 console.log(action.payload);
                 state.buckets[bucketIndex].cards.splice(cardIndex,1);
             }
+        },
+        toggleInitialEditValue: {
+            reducer(state, action){
+                const {index} = action.payload
+                const val =  state.buckets[index].initialEdit
+                if(val !== undefined){
+                    state.buckets[index].initialEdit = false;
+                }
+            }
         }
     }
 })
 
 export const allBuckets = (state) => state.buckets.buckets
-export const { editBucketName, deleteBucket, addBucket, deleteCard } = bucketSlice.actions
+export const { editBucketName, deleteBucket, addBucket, deleteCard, toggleInitialEditValue } = bucketSlice.actions
 
 export default bucketSlice.reducer

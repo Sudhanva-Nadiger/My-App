@@ -1,9 +1,11 @@
 import React from 'react'
 import Logo from '../assets/vite.svg'
-import {AppBar, Box, IconButton, Link, Toolbar} from "@mui/material";
+import {AppBar, Box, IconButton, Toolbar} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { selectToggler, toggleDrawer } from '../features/toggleSlice.js';
 import { useSelector, useDispatch } from "react-redux";
+
+import { Link } from 'react-router-dom';
 
 const handleClick = (isShown, dispatch) => {
   dispatch(toggleDrawer(!isShown))
@@ -28,8 +30,8 @@ const NavBar = () => {
           <img src={Logo} alt="Vite" />
         </Box>
         <Toolbar sx={{ px: '1rem', width: '100%' }}>
-          <Link href="#" sx={{ color: 'inherit', p: '0.5rem' }}>Home</Link>
-          <Link href="#" sx={{ color: 'inherit', p: '0.5rem' }}>History</Link>
+          <Link to="/" style={{ color: 'inherit', padding: '0.5rem' }}>Home</Link>
+          <Link to="/history" style={{ color: 'inherit', padding: '0.5rem' }}>History</Link>
         </Toolbar>
       </Toolbar>
     </AppBar>
