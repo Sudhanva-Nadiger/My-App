@@ -18,7 +18,7 @@ const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
            })
         }
       </Grid>
-        <Modal onClose={() => {}} open={true} content={<VideoPlayer />} action={() => {}} actionText="Submit" />
+        {/* <Modal onClose={() => {}} open={true} content={<VideoPlayer />} action={() => {}} actionText="Submit" /> */}
       <Fab color="primary" aria-label="add" sx={{ position: 'fixed', right: '2.5rem', bottom: '2.5rem' }}>
         <Add />
       </Fab>
