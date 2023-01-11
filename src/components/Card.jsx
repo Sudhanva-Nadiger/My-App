@@ -16,7 +16,7 @@ import { addToHitory, selectAllHistory } from '../features/historySlice'
 import EditCard from "./EditCard.jsx";
 import {useRef} from "react";
 
-export default function CardComp({title, link, cardIndex, bucketIndex, setDeleteCardClicked, setModal }) {
+export default function CardComp({title, link, cardIndex, bucketIndex, setModal, rerenderOnce }) {
   const disPatch = useDispatch()
   const id = cardIndex;
   const editCardRef = useRef()
@@ -39,6 +39,7 @@ export default function CardComp({title, link, cardIndex, bucketIndex, setDelete
       let title = inputs[0].value
       let link = inputs[1].value
       disPatch(updateCard({title, link, bucketIndex, cardIndex}))
+      rerenderOnce(true)
     }} actionText="Submit" />)
   }
 
@@ -71,7 +72,7 @@ export default function CardComp({title, link, cardIndex, bucketIndex, setDelete
         <Button size="small" onClick={handleEdit} > <EditIcon /></Button>
         <Button onClick={()=>{
           disPatch(deleteCard({bucketIndex, cardIndex}))
-          setDeleteCardClicked(true)
+          rerenderOnce(true)
         }} size="small"> <DeleteIcon /> </Button>
       </CardActions>
     </Card>

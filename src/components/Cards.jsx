@@ -7,7 +7,7 @@ import Modal from "./Modal.jsx";
 import { useDispatch } from 'react-redux';
 import { addCard } from '../features/bucketSlice';
 
-const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
+const Cards = ({cards, bucketIndex, rerenderOnce}) => {
   const dispatch = useDispatch()
   const [modalComponent, setComponent] = useState("")
   const editCardRef = useRef()
@@ -19,6 +19,7 @@ const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
       let link = inputs[1].value
       dispatch(addCard({title, link, bucketIndex}))
     }} actionText="Submit" />)
+    rerenderOnce(true)
   }
   return (
     <Box sx={{ position: 'relative', flexGrow: 1, p: '0.5rem', display: 'flex', flexDirection: 'column' }}>
@@ -26,7 +27,7 @@ const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
         {
            cards.map((card, index)=>{
                 return (
-                    <Card setDeleteCardClicked={setDeleteCardClicked} key={card.id} title={card.title} link={card.link} cardIndex={index} bucketIndex={bucketIndex} setModal={setComponent}  />
+                    <Card rerenderOnce={rerenderOnce} key={card.id} title={card.title} link={card.link} cardIndex={index} bucketIndex={bucketIndex} setModal={setComponent}  />
                 )
            })
         }
