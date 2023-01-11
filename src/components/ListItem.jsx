@@ -35,7 +35,7 @@ export default function ListItemComp({ initialEditValue, index, bucket, bgColor,
         >
             <ListItemButton onClick={() => {
                 setCards(bucket.cards);
-                setActive(bucket.id)
+                setActive(index)
             }} >
                 <ListItemText>
                     {
@@ -48,7 +48,7 @@ export default function ListItemComp({ initialEditValue, index, bucket, bgColor,
                     }} onClick={onDone}><Done /></IconButton>
                 }
                 {
-                    (active === bucket.id) &&
+                    (active === index) &&
                     <>
                         <IconButton style={{
                             color: `${bgColor === "" ? "inherit" : "white"}`

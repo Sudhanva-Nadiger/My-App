@@ -106,11 +106,18 @@ export const bucketSlice = createSlice({
                 const foundBucket = state.buckets.find(bucket => bucket.id === bucketId)
                 foundBucket.cards.unshift(newCard)
             }
+        },
+        deleteCard: {
+            reducer(state, action){
+                const { bucketIndex, cardIndex} = action.payload
+                console.log(action.payload);
+                state.buckets[bucketIndex].cards.splice(cardIndex,1);
+            }
         }
     }
 })
 
 export const allBuckets = (state) => state.buckets.buckets
-export const { editBucketName, deleteBucket, addBucket } = bucketSlice.actions
+export const { editBucketName, deleteBucket, addBucket, deleteCard } = bucketSlice.actions
 
 export default bucketSlice.reducer

@@ -6,9 +6,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { width } from '@mui/system';
+import { useDispatch } from 'react-redux';
+import { deleteCard } from '../features/bucketSlice'
+export default function CardComp({title, link, cardIndex, bucketIndex, setDeleteCardClicked}) {
+  const disPatch = useDispatch()
 
-export default function CardComp({title, link}) {
   return (
     <Card style={{marginLeft:"10px", marginTop: '1rem'}} sx={{ maxWidth: 250, height: 'min-content' }}>
       <CardContent>
@@ -27,25 +29,11 @@ export default function CardComp({title, link}) {
       }} >
         <Button size="small">Watch</Button>
         <Button size="small"> <EditIcon /></Button>
-        <Button size="small"> <DeleteIcon /> </Button>
+        <Button onClick={()=>{
+          disPatch(deleteCard({bucketIndex, cardIndex}))
+          setDeleteCardClicked(true)
+        }} size="small"> <DeleteIcon /> </Button>
       </CardActions>
     </Card>
   );
 }
-
-
-
-
-
-// import React from 'react'
-
-// const Card = ({title, link}) => {
-//   return (
-//     <div>
-//         <h2>{title}</h2>
-//         <p>{link}</p>
-//     </div>
-//   )
-// }
-
-// export default Card

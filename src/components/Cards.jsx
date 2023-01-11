@@ -3,15 +3,15 @@ import Card from './Card'
 import {Box, Fab, Grid} from "@mui/material";
 import {Add} from "@mui/icons-material";
 
-const Cards = ({cards}) => {
-
+const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
+  
   return (
     <Box sx={{ position: 'relative', flexGrow: 1, p: '0.5rem', display: 'flex', flexDirection: 'column' }}>
       <Grid sx={{ height: '100%' ,mt: '0.5rem', p: '1rem', alignContent: 'start' }} container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {
-           cards.map((card)=>{
+           cards.map((card, index)=>{
                 return (
-                    <Card key={card.id} title={card.title} link={card.link} />
+                    <Card setDeleteCardClicked={setDeleteCardClicked} key={card.id} title={card.title} link={card.link} cardIndex={index} bucketIndex={bucketIndex}/>
                 )
            })
         }

@@ -34,8 +34,10 @@ const handleClose = (dispatch, open) => dispatch(toggleDrawer(!open))
 
 function ResponsiveDrawer() {
   const [cards, setCards] = React.useState([]);
-  const [active, setActive] = React.useState("");
+  const [active, setActive] = React.useState(-1);
   const [drawerWidth, setWidth] = React.useState(drawerDefaultWidth)
+  const [deleteCardClicked, setDeleteCardClicked] = React.useState(false)
+
   const buckets = useSelector(allBuckets)
   const mobileOpen = useSelector(selectToggler)
   const dispatch = useDispatch()
@@ -78,7 +80,11 @@ function ResponsiveDrawer() {
       <Divider />
       <List>
         {buckets.map((bucket, index) => {
-          const bgColor = active === bucket.id ? "#2196f3":"";
+          const bgColor = active === index ? "#2196f3":"";
+          if((deleteCardClicked) && (active === index)){
+            setCards(bucket.cards)
+            setDeleteCardClicked(false);
+          }
           return (
               <ListItem initialEditValue={bucket.initialEdit} key={bucket.id} index={index} bucket={bucket} bgColor={bgColor} setActive={setActive} setCards={setCards} active={active} />
           )
@@ -125,7 +131,7 @@ function ResponsiveDrawer() {
           <div style={draggerStyles} onMouseDown={e => handleMouseDown(e)} className="dragger" />
         </Box>
       </Box>
-      <Cards cards={cards} />
+      <Cards setDeleteCardClicked={setDeleteCardClicked} bucketIndex={active} cards={cards} />
     </div>
   );
 }
