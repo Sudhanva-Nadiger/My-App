@@ -80,7 +80,7 @@ function ResponsiveDrawer() {
         {buckets.map((bucket, index) => {
           const bgColor = active === bucket.id ? "#2196f3":"";
           return (
-              <ListItem initialEditValue={false} key={bucket.id} index={index} bucket={bucket} bgColor={bgColor} setActive={setActive} setCards={setCards} active={active} />
+              <ListItem initialEditValue={bucket.initialEdit} key={bucket.id} index={index} bucket={bucket} bgColor={bgColor} setActive={setActive} setCards={setCards} active={active} />
           )
         })}
       </List>

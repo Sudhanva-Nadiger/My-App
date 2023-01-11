@@ -88,7 +88,8 @@ export const bucketSlice = createSlice({
                 state.buckets.unshift({
                     name : "new bucket",
                     id: nanoid(),
-                    cards : []
+                    cards : [],
+                    initialEdit: true,
                 })
             }
         },
