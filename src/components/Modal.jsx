@@ -1,9 +1,20 @@
-import React from 'react'
+import {
+  Dialog,
+  DialogActions,
+} from "@mui/material";
+import Button from "@mui/material/Button";
 
-const Modal = () => {
+const Modal = ({ content, action, actionText, onClose, open }) => {
+
   return (
-    <div>Modal</div>
-  )
+      <Dialog onClose={onClose} open={open} maxWidth="sm" fullWidth sx={{ zIndex: 12000 }}>
+        {content}
+        <DialogActions>
+          <Button onClick={onClose}>Close</Button>
+          <Button onClick={action}>{actionText}</Button>
+        </DialogActions>
+      </Dialog>
+  );
 }
 
 export default Modal

@@ -2,6 +2,8 @@ import React from 'react'
 import Card from './Card'
 import {Box, Fab, Grid} from "@mui/material";
 import {Add} from "@mui/icons-material";
+import VideoPlayer from "./VideoPlayer";
+import Modal from "./Modal.jsx";
 
 const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
   
@@ -16,6 +18,7 @@ const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
            })
         }
       </Grid>
+        <Modal onClose={() => {}} open={true} content={<VideoPlayer />} action={() => {}} actionText="Submit" />
       <Fab color="primary" aria-label="add" sx={{ position: 'fixed', right: '2.5rem', bottom: '2.5rem' }}>
         <Add />
       </Fab>
