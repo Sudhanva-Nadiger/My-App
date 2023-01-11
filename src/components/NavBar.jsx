@@ -30,8 +30,8 @@ const NavBar = () => {
           <img src={Logo} alt="Vite" />
         </Box>
         <Toolbar sx={{ px: '1rem', width: '100%' }}>
-          <Link to="/" style={{ color: 'inherit', padding: '0.5rem' }}>Home</Link>
-          <Link to="/history" style={{ color: 'inherit', padding: '0.5rem' }}>History</Link>
+          <Link to="/" style={{ color: 'inherit', padding: '0.5rem', textDecoration:"none" }}>Home</Link>
+          <Link to="/history" style={{ color: 'inherit', padding: '0.5rem', textDecoration:"none"  }}>History</Link>
         </Toolbar>
       </Toolbar>
     </AppBar>

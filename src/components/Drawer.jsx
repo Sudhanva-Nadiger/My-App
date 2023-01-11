@@ -122,7 +122,7 @@ function ResponsiveDrawer() {
             variant="permanent"
             sx={{
               display: { xs: 'none', sm: 'block' },
-              '& .MuiDrawer-paper': {  width: drawerWidth, position: 'relative', height: '100vh', pb: '6rem', overflowY:'auto' },
+              '& .MuiDrawer-paper': {  width: drawerWidth, position: 'relative', height: '70vh', pb: '6rem', overflowY:'auto' },
             }}
             open
           >
