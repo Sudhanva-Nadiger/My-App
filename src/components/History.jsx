@@ -2,16 +2,20 @@ import React from 'react'
 import { Box, Grid, Typography } from '@mui/material'
 import { HistoryRounded } from '@mui/icons-material'
 import HistoryCard from './HistoryCard'
+import { selectAllHistory, addToHitory } from '../features/historySlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const History = () => {
+  const dispatch = useDispatch() /* TODO: use dispatch for delete feature */
+  const historyArr = useSelector(selectAllHistory)
   return (
     <Box sx={{ position: 'relative', p: '1rem', display: 'flex', flexDirection: 'column' }}>
       <Typography variant="h4"><HistoryRounded sx={{ fontSize: 'inherit', verticalAlign: 'middle' }} /> History</Typography>
       <Grid sx={{ height: '100%' ,mt: '1rem', py: '1rem', px: "2rem", alignContent: 'start' }} container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         {
-           [{title: "Card", link: "value", time: "5 sec ago"}].map((card, index)=>{
+           historyArr.map((card, index)=>{
                 return (
-                  <HistoryCard title={card.title} link={card.link} time={card.time} />
+                  <HistoryCard title={card.title} link={card.link} time={card.time} /> /* TODO: time */
                 )
            })
         }

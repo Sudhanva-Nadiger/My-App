@@ -1,6 +1,6 @@
 import {Box, DialogContent, DialogTitle } from "@mui/material";
 
-export default function EditCard() {
+export default function VideoPlayer({ link }) {
     return (
         <>
             <DialogTitle>Video</DialogTitle>

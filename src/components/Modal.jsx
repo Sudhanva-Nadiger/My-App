@@ -11,7 +11,7 @@ const Modal = ({ content, action, actionText, onClose, open }) => {
         {content}
         <DialogActions>
           <Button onClick={onClose}>Close</Button>
-          <Button onClick={action}>{actionText}</Button>
+          <Button onClick={() => {action(); onClose()}}>{actionText}</Button>
         </DialogActions>
       </Dialog>
   );

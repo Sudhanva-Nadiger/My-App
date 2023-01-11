@@ -10,7 +10,12 @@ const historySlice = createSlice({
     reducers: {
         addToHitory: {
             reducer(state, action){
-
+                const { title, link} = action.payload
+                const now = new Date().toDateString()
+                const newObj = {
+                    title, link, now
+                }
+                state.history.unshift(newObj)
             }
         },
         deleteFroHistory: {
@@ -25,6 +30,8 @@ const historySlice = createSlice({
         }
     }
 })
+
+export const selectAllHistory = (state)=> state.history.history
 
 export const { addToHitory, deleteFroHistory, clearHistory} = historySlice.actions
 

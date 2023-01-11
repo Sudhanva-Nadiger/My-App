@@ -10,9 +10,22 @@ import { useDispatch } from 'react-redux';
 import { deleteCard } from '../features/bucketSlice'
 import {ItemTypes} from '../features/dragTypes'
 import { useDrag } from 'react-dnd';
-export default function CardComp({title, link, cardIndex, bucketIndex, setDeleteCardClicked}) {
+import VideoPlayer from './VideoPlayer';
+import Modal from './Modal';
+import { addToHitory } from '../features/historySlice'
+export default function CardComp({title, link, cardIndex, bucketIndex, setDeleteCardClicked, setModal }) {
   const disPatch = useDispatch()
   const id = cardIndex;
+
+  /* modal logic */
+  const handleClick = () => {
+    setModal(<Modal onClose={() => { setModal("")}} open={true} content={<VideoPlayer link={link} />} action={() => {}} />)
+    const historyObject = {
+      title, 
+      link,
+    }
+    disPatch( addToHitory(historyObject))
+  }
 
   /* DnD Drop Source */
   const [{isDragging}, drag] = useDrag(() => ({
@@ -39,8 +52,8 @@ export default function CardComp({title, link, cardIndex, bucketIndex, setDelete
         alignItems : "flex-end",
         justifyContent: "center",
       }} >
-        <Button size="small">Watch</Button>
-        <Button size="small"> <EditIcon /></Button>
+        <Button size="small" onClick={handleClick}>Watch</Button>
+        <Button size="small" > <EditIcon /></Button>
         <Button onClick={()=>{
           disPatch(deleteCard({bucketIndex, cardIndex}))
           setDeleteCardClicked(true)
@@ -49,3 +62,4 @@ export default function CardComp({title, link, cardIndex, bucketIndex, setDelete
     </Card>
   );
 }
+

@@ -26,3 +26,6 @@ const HistoryCard = ({ title, link, time }) => {
 }
 
 export default HistoryCard
+
+
+/* setModal(<Modal onClose={() => { setModal("")}} open={true} content={<VideoPlayer link={link} />} action={() => {}} />) */
