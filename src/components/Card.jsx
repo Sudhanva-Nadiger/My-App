@@ -8,11 +8,23 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
 import { deleteCard } from '../features/bucketSlice'
+import {ItemTypes} from '../features/dragTypes'
+import { useDrag } from 'react-dnd';
 export default function CardComp({title, link, cardIndex, bucketIndex, setDeleteCardClicked}) {
   const disPatch = useDispatch()
+  const id = cardIndex;
+
+  /* DnD Drop Source */
+  const [{isDragging}, drag] = useDrag(() => ({
+    type: ItemTypes.CARD,
+    item: { id },
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    })
+  }))
 
   return (
-    <Card style={{marginLeft:"10px", marginTop: '1rem'}} sx={{ maxWidth: 250, height: 'min-content' }}>
+    <Card style={{marginLeft:"10px", marginTop: '1rem'}} sx={{ maxWidth: 250, height: 'min-content', opacity: isDragging ? 0.5 : 1 }} ref={drag}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}

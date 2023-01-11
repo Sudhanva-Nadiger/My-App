@@ -7,6 +7,8 @@ import { Delete, Done } from "@mui/icons-material";
 import Edit from "@mui/icons-material/Edit";
 import { useDispatch } from 'react-redux'
 import { editBucketName, deleteBucket, toggleInitialEditValue } from '../features/bucketSlice'
+import { useDrop } from "react-dnd";
+import { ItemTypes } from '../features/dragTypes'
 
 export default function ListItemComp({ initialEditValue, index, bucket, bgColor, setActive, setCards, active }) {
     const dispatch = useDispatch()
@@ -26,11 +28,25 @@ export default function ListItemComp({ initialEditValue, index, bucket, bgColor,
     const handleChange = e => {
         setValue(e.target.value);
     }
+
+     /* TODO: move card to current bucket */
+    const handleMoveCard = (sth) => console.log(sth.id);
+
+    /* DnD Drop Target */
+    const [{ isOver }, drop] = useDrop(() => ({
+        accept: ItemTypes.CARD,
+        drop: (item) => handleMoveCard(item),
+        collect: (monitor) => ({
+            isOver: !!monitor.isOver(),
+        })
+    }))
+
     return (
-        <ListItem disablePadding
+        <ListItem ref={drop} disablePadding
             style={{
                 backgroundColor: `${bgColor}`,
-                color: `${bgColor === "" ? "inherit" : "white"}`
+                color: `${bgColor === "" ? "inherit" : "white"}`,
+                outline: isOver ? "2px dotted red" : "",
             }}
             key={bucket.id}
         >
