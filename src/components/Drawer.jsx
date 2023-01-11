@@ -37,6 +37,7 @@ function ResponsiveDrawer() {
   const [active, setActive] = React.useState(-1);
   const [drawerWidth, setWidth] = React.useState(drawerDefaultWidth)
   const [deleteCardClicked, setDeleteCardClicked] = React.useState(false)
+    /* used to re-render whenever necessay, does not work withoutit yet */
 
   const buckets = useSelector(allBuckets)
   const mobileOpen = useSelector(selectToggler)

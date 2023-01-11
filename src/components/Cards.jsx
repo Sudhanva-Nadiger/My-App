@@ -33,9 +33,12 @@ const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
       </Grid>
       {/* <Modal onClose={() => {}} open={true} content={<VideoPlayer />} action={() => {}} actionText="Submit" /> */}
       {modalComponent}
-      <Fab onClick={()=>handleAddcard(bucketIndex)} color="primary" aria-label="add" sx={{ position: 'fixed', right: '2.5rem', bottom: '2.5rem' }}>
-        <Add />
-      </Fab>
+        {
+            bucketIndex !== -1 &&
+          <Fab onClick={()=>handleAddcard(bucketIndex)} color="primary" aria-label="add" sx={{ position: 'fixed', right: '2.5rem', bottom: '2.5rem' }}>
+            <Add />
+          </Fab>
+        }
     </Box>
   )
 }

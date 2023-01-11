@@ -106,6 +106,15 @@ export const bucketSlice = createSlice({
                 foundBucket.cards.unshift(newCard)
             }
         },
+        updateCard: {
+            reducer(state, action) {
+                const {title, link, bucketIndex, cardIndex} = action.payload
+                const foundBucket = state.buckets.find((bucket, index) => index === bucketIndex)
+                const foundCard = foundBucket.cards[cardIndex]
+                foundCard.title = title;
+                foundCard.link = link;
+            }
+        },
         deleteCard: {
             reducer(state, action){
                 const { bucketIndex, cardIndex} = action.payload
@@ -126,6 +135,6 @@ export const bucketSlice = createSlice({
 })
 
 export const allBuckets = (state) => state.buckets.buckets
-export const { editBucketName, addCard, deleteBucket, addBucket, deleteCard, toggleInitialEditValue } = bucketSlice.actions
+export const { editBucketName, addCard, updateCard, deleteBucket, addBucket, deleteCard, toggleInitialEditValue } = bucketSlice.actions
 
 export default bucketSlice.reducer
