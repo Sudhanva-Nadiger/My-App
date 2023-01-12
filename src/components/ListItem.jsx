@@ -6,17 +6,18 @@ import Typography from "@mui/material/Typography";
 import { Delete, Done } from "@mui/icons-material";
 import Edit from "@mui/icons-material/Edit";
 import { useDispatch } from 'react-redux'
-import { editBucketName, deleteBucket, toggleInitialEditValue } from '../features/bucketSlice'
+import { editBucketName, deleteBucket, toggleInitialEditValue, deleteCard, addCard } from '../features/bucketSlice'
 import { useDrop } from "react-dnd";
 import { ItemTypes } from '../features/dragTypes'
 
-export default function ListItemComp({ initialEditValue, index, bucket, bgColor, setActive, setCards, active }) {
+export default function ListItemComp({rerenderOnce, initialEditValue, index, bucket, bgColor, setActive, setCards, active }) {
     const dispatch = useDispatch()
     const [edit, setEdit] = useState(initialEditValue ? initialEditValue : false);
     dispatch(toggleInitialEditValue({index}))
     const [value, setValue] = useState(bucket.name)
     bgColor = !edit ? bgColor : ""
 
+    console.log(active);
     const toggleEdit = () => setEdit(!edit)
 
     const onDone = () => {
@@ -30,16 +31,24 @@ export default function ListItemComp({ initialEditValue, index, bucket, bgColor,
     }
 
      /* TODO: move card to current bucket */
-    const handleMoveCard = (sth) => console.log(sth.id);
+    const handleMoveCard = (item, active) => {
+        console.log(active, index);
+        if((active !== index) && (active !== -1)){
+            console.log(index,active, 'enter');
+            dispatch(deleteCard({ bucketIndex: active, cardIndex: item.cardIndex}));
+            dispatch(addCard({bucketIndex:index, title: item.title, link: item.link}))
+            rerenderOnce(true)
+        }
+    };
 
     /* DnD Drop Target */
     const [{ isOver }, drop] = useDrop(() => ({
         accept: ItemTypes.CARD,
-        drop: (item) => handleMoveCard(item),
+        drop: (item, monitor) => handleMoveCard(item, active),
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
-        })
-    }))
+        }),
+    }), [active])
 
     return (
         <ListItem ref={drop} disablePadding

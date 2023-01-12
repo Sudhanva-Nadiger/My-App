@@ -23,7 +23,7 @@ const HistoryCard = ({id, title, link, time, setModal, index }) => {
   }
 
   return (
-    <Card>
+    <Card sx={{ m: '1rem' }}>
         <CardContent>
             <Typography gutterBottom variant="h5" component="div">
             {title}
@@ -45,6 +45,3 @@ const HistoryCard = ({id, title, link, time, setModal, index }) => {
 }
 
 export default HistoryCard
-
-
-/* setModal(<Modal onClose={() => { setModal("")}} open={true} content={<VideoPlayer link={link} />} action={() => {}} />) */

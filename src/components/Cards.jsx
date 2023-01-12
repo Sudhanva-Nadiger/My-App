@@ -7,7 +7,7 @@ import Modal from "./Modal.jsx";
 import { useDispatch } from 'react-redux';
 import { addCard } from '../features/bucketSlice';
 
-const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
+const Cards = ({cards, bucketIndex, rerenderOnce}) => {
   const dispatch = useDispatch()
   const [modalComponent, setComponent] = useState("")
   const editCardRef = useRef()
@@ -18,6 +18,7 @@ const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
       let title = inputs[0].value
       let link = inputs[1].value
       dispatch(addCard({title, link, bucketIndex}))
+      rerenderOnce(true)
     }} actionText="Submit" />)
   }
   return (
@@ -26,16 +27,19 @@ const Cards = ({cards, bucketIndex, setDeleteCardClicked}) => {
         {
            cards.map((card, index)=>{
                 return (
-                    <Card setDeleteCardClicked={setDeleteCardClicked} key={card.id} title={card.title} link={card.link} cardIndex={index} bucketIndex={bucketIndex} setModal={setComponent}  />
+                    <Card cardId={card.id} rerenderOnce={rerenderOnce} key={card.id} title={card.title} link={card.link} cardIndex={index} bucketIndex={bucketIndex} setModal={setComponent}  />
                 )
            })
         }
       </Grid>
       {/* <Modal onClose={() => {}} open={true} content={<VideoPlayer />} action={() => {}} actionText="Submit" /> */}
       {modalComponent}
-      <Fab onClick={()=>handleAddcard(bucketIndex)} color="primary" aria-label="add" sx={{ position: 'fixed', right: '2.5rem', bottom: '2.5rem' }}>
-        <Add />
-      </Fab>
+        {
+            bucketIndex !== -1 &&
+          <Fab onClick={()=>handleAddcard(bucketIndex)} color="primary" aria-label="add" sx={{ position: 'fixed', right: '2.5rem', bottom: '2.5rem' }}>
+            <Add />
+          </Fab>
+        }
     </Box>
   )
 }

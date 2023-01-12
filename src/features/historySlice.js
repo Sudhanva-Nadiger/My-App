@@ -18,12 +18,9 @@ const historySlice = createSlice({
                 const { title, link, cardId} = action.payload
                 const now = new Date().toDateString()
                 const newObj = {
-                    title, link, now, cardId
+                    title, link, now, id: cardId
                 }
-                const arr = state.history
-                console.log(current(state));
-                const foundCard = arr.find((el)=>el.id === cardId)
-                console.log(foundCard);
+                state.history.unshift(newObj)
             },
            
         },
