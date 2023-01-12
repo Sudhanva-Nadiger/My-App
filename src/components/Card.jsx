@@ -12,22 +12,22 @@ import {ItemTypes} from '../features/dragTypes'
 import { useDrag } from 'react-dnd';
 import VideoPlayer from './VideoPlayer';
 import Modal from './Modal';
-import { addToHitory, selectAllHistory } from '../features/historySlice'
+import { addToHitory } from '../features/historySlice'
 
-export default function CardComp({title, link, cardIndex, bucketIndex, setDeleteCardClicked, setModal }) {
+export default function CardComp({title, link, cardIndex, bucketIndex, setDeleteCardClicked, setModal, cardId }) {
   const disPatch = useDispatch()
   const id = cardIndex;
-  const historyArr = useSelector( selectAllHistory);
+
   /* modal logic */
   const handleClick = () => {
     setModal(<Modal onClose={() => { setModal("")}} open={true} content={<VideoPlayer link={link} />} action={() => {}} />)
+   
     const historyObject = {
-
+      cardId,
       title, 
       link,
     }
-    
-    disPatch( addToHitory(historyObject))
+    disPatch(addToHitory(historyObject))
   }
 
   /* DnD Drop Source */
