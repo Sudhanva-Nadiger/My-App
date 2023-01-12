@@ -9,7 +9,7 @@ const initialState = {
                 {
                     id: nanoid(),
                     title: "card2",
-                    link: "https://youtu.be/cV2gBU6hKfY"
+                    link: "https://youtube.com/embed/cV2gBU6hKfY"
                 }
             ]
         },
@@ -20,7 +20,7 @@ const initialState = {
                 {
                     id: nanoid(),
                     title: "card2",
-                    link: "https://youtu.be/z9bZufPHFLU"
+                    link: "https://youtube.com/embed/z9bZufPHFLU"
                 }
             ]
         },
@@ -31,12 +31,12 @@ const initialState = {
                 {
                     id: nanoid(),
                     title: "card1",
-                    link: "https://youtu.be/hVvAkPbJwnw"
+                    link: "https://youtube.com/embed/hVvAkPbJwnw"
                 },
                 {
                     id: nanoid(),
                     title: "card10",
-                    link: "https://youtu.be/GQoQoJmmAuM"
+                    link: "https://youtube.com/embed/GQoQoJmmAuM"
                 },
                 {
                     id: nanoid(),
@@ -53,12 +53,12 @@ const initialState = {
                 {
                     id: nanoid(),
                     title: "Song1",
-                    link: "https://youtu.be/MyNSOu-Fl-k"
+                    link: "https://youtube.com/embed/MyNSOu-Fl-k"
                 },
                 {
                     id: nanoid(),
                     title: "Song3",
-                    link: "https://youtu.be/mTuPDGFboNU"
+                    link: "https://youtube.com/embed/mTuPDGFboNU"
                 },
             ]
         }

@@ -16,7 +16,7 @@ import { addToHitory } from '../features/historySlice'
 import EditCard from "./EditCard.jsx";
 import { useRef } from "react";
 import MenuList from './MenuList'
-import { Toolbar } from '@mui/material';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 export default function CardComp({ title, link, cardIndex, bucketIndex, setModal, rerenderOnce, cardId }) {
   const disPatch = useDispatch()
@@ -65,15 +65,17 @@ export default function CardComp({ title, link, cardIndex, bucketIndex, setModal
   }))
 
   return (
-    <Card style={{ marginLeft: "10px", marginTop: '1rem', position: "relative" }} sx={{ maxWidth: 250, height: 'min-content', opacity: isDragging ? 0.5 : 1 }} ref={drag}>
-      <CardContent>
+    <Card style={{ marginLeft: "10px", marginTop: '1rem', position: "relative", textOverflow: 'ellipsis', overflow: 'hidden' }} sx={{ maxWidth: 250, height: 'min-content', opacity: isDragging ? 0.5 : 1 }} ref={drag}>
+      <CardContent style={{textOverflow: 'ellipsis', overflow: 'hidden'}}>
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
         <MenuList moveCardTo={moveCardTo} moveCardFrom={moveCardFrom} />
-        <Typography variant="body2" color="text.secondary">
-          {link}
-        </Typography>
+        <CopyToClipboard text={link}>
+          <Button variant="text" size="small" sx={{ p: '0', textTransform: 'none', color: 'text.secondary' }}>
+            Copy Link
+          </Button>
+        </CopyToClipboard>
       </CardContent>
 
       <CardActions style={{

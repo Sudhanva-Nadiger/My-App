@@ -6,12 +6,12 @@ const EditCard = forwardRef((props, ref) => (
         <DialogContent>
             <FormGroup sx={{ pt: "1rem", gap: '1rem' }} ref={ref}>
                 <TextField
-                    helperText="Please enter card name (required)"
+                    helperText="Please enter video name (required)"
                     label="name"
                     required
                 />
                 <TextField
-                    helperText="Please enter card link (required)"
+                    helperText="Please enter embed link of the video (required)"
                     label="link"
                     required
                 />
