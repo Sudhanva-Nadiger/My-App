@@ -22,7 +22,7 @@ const History = () => {
         {
            historyArr.map((card, index)=>{
                 return (
-                  <HistoryCard  id={card.id} index={index} key={card.id + index} title={card.title} link={card.link} time={card.time} setModal={setModal} /> /* TODO: time */
+                  <HistoryCard  id={card.id} index={index} key={card.id + index} title={card.title} link={card.link} time={card.now} setModal={setModal} /> /* TODO: time */
                 )
            })
         }

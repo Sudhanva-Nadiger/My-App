@@ -16,7 +16,7 @@ const historySlice = createSlice({
         addToHitory: {
             reducer(state, action){
                 const { title, link, cardId} = action.payload
-                const now = new Date().toDateString()
+                const now = new Date()
                 const newObj = {
                     title, link, now, id: cardId
                 }

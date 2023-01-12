@@ -5,6 +5,7 @@ import { addToHitory, deleteFromHistory } from '../features/historySlice'
 import { useDispatch } from 'react-redux'
 import VideoPlayer from './VideoPlayer'
 import Modal from './Modal'
+import { formatDistance } from 'date-fns'
 
 const HistoryCard = ({id, title, link, time, setModal, index }) => {
   const dispatch = useDispatch()
@@ -21,7 +22,8 @@ const HistoryCard = ({id, title, link, time, setModal, index }) => {
   const handleDelete = () => {
     dispatch(deleteFromHistory(index))
   }
-
+ 
+  
   return (
     <Card sx={{ m: '1rem' }}>
         <CardContent>
@@ -31,8 +33,11 @@ const HistoryCard = ({id, title, link, time, setModal, index }) => {
             <Typography variant="body2" color="text.secondary">
             {link}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-            {time}
+            <br />
+            <Typography variant="body" color="text.secondary">
+            {
+              formatDistance(time, new Date(), {addSuffix: true})
+            }
             </Typography>
         </CardContent>
 
