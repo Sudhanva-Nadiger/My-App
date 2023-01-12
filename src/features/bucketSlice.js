@@ -9,18 +9,18 @@ const initialState = {
                 {
                     id: nanoid(),
                     title: "card2",
-                    link: "linkkejb2"
+                    link: "https://youtu.be/cV2gBU6hKfY"
                 }
             ]
         },
         {
             id: nanoid(),
-            name: "Environment",
+            name: "School",
             cards: [
                 {
                     id: nanoid(),
                     title: "card2",
-                    link: "linkkejb"
+                    link: "https://youtu.be/z9bZufPHFLU"
                 }
             ]
         },
@@ -31,35 +31,37 @@ const initialState = {
                 {
                     id: nanoid(),
                     title: "card1",
-                    link: "link1"
+                    link: "https://youtu.be/hVvAkPbJwnw"
                 },
                 {
                     id: nanoid(),
                     title: "card10",
-                    link: "link2"
+                    link: "https://youtu.be/GQoQoJmmAuM"
                 },
                 {
                     id: nanoid(),
                     title: "card100",
                     link: "link3"
                 },
-                {
-                    id: nanoid(),
-                    title: "carduiehdwie1",
-                    link: "link4"
-                },
-                {
-                    id: nanoid(),
-                    title: "card1qduiuwiqegdiewgd",
-                    link: "link5"
-                },
-                {
-                    id: nanoid(),
-                    title: "card19",
-                    link: "link6"
-                },
+
             ]
         },
+        {
+            name: "Songs",
+            id: nanoid(),
+            cards: [
+                {
+                    id: nanoid(),
+                    title: "Song1",
+                    link: "https://youtu.be/MyNSOu-Fl-k"
+                },
+                {
+                    id: nanoid(),
+                    title: "Song3",
+                    link: "https://youtu.be/mTuPDGFboNU"
+                },
+            ]
+        }
 
     ],
 }
@@ -69,33 +71,33 @@ export const bucketSlice = createSlice({
     initialState,
     reducers: {
         editBucketName: {
-            reducer(state, action){
-                const { editedName, id} = action.payload
+            reducer(state, action) {
+                const { editedName, id } = action.payload
                 const foundBucket = state.buckets.find(bucket => bucket.id === id)
-                if(foundBucket){
+                if (foundBucket) {
                     foundBucket.name = editedName
                 }
             }
         },
         deleteBucket: {
-            reducer(state, action){
+            reducer(state, action) {
                 const { index } = action.payload
                 state.buckets.splice(index, 1);
             }
         },
         addBucket: {
-            reducer(state, action){
+            reducer(state, action) {
                 state.buckets.unshift({
-                    name : "new bucket",
+                    name: "new bucket",
                     id: nanoid(),
-                    cards : [],
+                    cards: [],
                     initialEdit: true,
                 })
             }
         },
         addCard: {
-            reducer(state, action){
-                const {bucketIndex, title, link} = action.payload;
+            reducer(state, action) {
+                const { bucketIndex, title, link } = action.payload;
                 const newCard = {
                     id: nanoid(),
                     title,
@@ -108,7 +110,7 @@ export const bucketSlice = createSlice({
         },
         updateCard: {
             reducer(state, action) {
-                const {title, link, bucketIndex, cardIndex} = action.payload
+                const { title, link, bucketIndex, cardIndex } = action.payload
                 const foundBucket = state.buckets.find((bucket, index) => index === bucketIndex)
                 const foundCard = foundBucket.cards[cardIndex]
                 foundCard.title = title;
@@ -116,17 +118,17 @@ export const bucketSlice = createSlice({
             }
         },
         deleteCard: {
-            reducer(state, action){
-                const { bucketIndex, cardIndex} = action.payload
+            reducer(state, action) {
+                const { bucketIndex, cardIndex } = action.payload
                 console.log(action.payload, "deelele");
-                state.buckets[bucketIndex].cards.splice(cardIndex,1);
+                state.buckets[bucketIndex].cards.splice(cardIndex, 1);
             }
         },
         toggleInitialEditValue: {
-            reducer(state, action){
-                const {index} = action.payload
-                const val =  state.buckets[index].initialEdit
-                if(val !== undefined){
+            reducer(state, action) {
+                const { index } = action.payload
+                const val = state.buckets[index].initialEdit
+                if (val !== undefined) {
                     state.buckets[index].initialEdit = false;
                 }
             }
